@@ -1,229 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Conversor de Medidas de Tela</title>
-		<link
-			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-		<link rel="icon" type="image/ico" href="conversor.ico" />
-		<style>
-			body {
-				background-color: #f0f0f0;
-				background-image: linear-gradient(
-						to right,
-						#dcdcdcaf 1px,
-						transparent 1px
-					),
-					linear-gradient(to bottom, #dcdcdcaf 1px, transparent 1px);
-				background-size: 20px 20px;
-				font-family: Arial, sans-serif;
-				padding: 20px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				min-height: 100vh;
-				margin: 0;
-				position: relative;
-			}
-			label {
-				color: #696969;
-			}
-			small {
-				background-color: #c2c2c2;
-				color: #828282;
-				padding: 5px;
-				border-radius: 5px;
-			}
-			.converter-container {
-				max-width: 400px;
-				background-color: #fff;
-				border-radius: 8px;
-				padding: 20px;
-				box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-			}
-			.form-group {
-				margin-bottom: 20px;
-			}
-			.copy-button {
-				padding: 6px 10px;
-				font-size: 16px;
-				border: 1px solid #ced4da;
-				background: transparent;
-				cursor: pointer;
-				color: #303030;
-				border-radius: 4px;
-			}
-			.copy-button:hover {
-				color: #368f22;
-			}
-			#logo {
-				width: 50px;
-				height: 50px;
-			}
-			.footer {
-				position: absolute;
-				bottom: 10px;
-				right: 10px;
-				font-size: 12px;
-				color: #555;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="converter-container">
-			<h4 class="text-center mb-4">Conversor de Medidas</h4>
-			<div class="form-group">
-				<!-- <small
-					>Converter pixels para
-					<span id="conversionSystemLabel">Pontos (pt)</span></small
-				> -->
-				<label for="pixelInput">Pixels (px):</label>
-				<input
-					type="number"
-					class="form-control"
-					id="pixelInput"
-					placeholder="Insira o valor em pixels"
-					oninput="convertMeasurement()" />
-			</div>
-			<div class="form-group">
-				<label for="conversionSystem">Converter para:</label>
-				<select
-					class="form-control"
-					id="conversionSystem"
-					onchange="convertMeasurement()">
-					<option value="pt">Pontos (pt)</option>
-					<option value="mm">Milímetros (mm)</option>
-					<option value="cm">Centímetros (cm)</option>
-					<option value="in">Polegadas (in)</option>
-					<option value="em">EM (em)</option>
-					<option value="rem">REM (rem)</option>
-					<option value="vw">Viewport Width (vw)</option>
-					<option value="vh">Viewport Height (vh)</option>
-					<option value="percentage">Porcentagem (%)</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<div class="input-group">
-					<input
-						type="text"
-						class="form-control"
-						id="outputResult"
-						readonly />
-					<div class="input-group-append">
-						<button
-							class="copy-button btn"
-							onclick="copyValue()"
-							title="Copiar"
-							><i class="far fa-copy"></i
-						></button>
-					</div>
-				</div>
-			</div>
-		</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conversor de Medidas de Tela</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="icon" type="image/ico" href="conversor.ico" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+    <script src="/scripts/calculatorScript.js"></script>
+    <script src="/scripts/converterScript.js"></script>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center flex-wrap">
+        <div class="col-12 col-lg-6 d-flex justify-content-center">
+          <div class="converter-container">
+            <h4 class="text-center mb-4">Conversor de Medidas</h4>
+            <div class="form-group">
+              <label for="pixelInput">Pixels (px):</label>
+              <input
+                type="number"
+                class="form-control"
+                id="pixelInput"
+                placeholder="Insira o valor em pixels"
+                oninput="convertMeasurement()"
+              />
+            </div>
+            <div class="form-group">
+              <label for="conversionSystem">Converter para:</label>
+              <select
+                class="form-control"
+                id="conversionSystem"
+                onchange="convertMeasurement()"
+              >
+                <option value="pt">Pontos (pt)</option>
+                <option value="mm">Milímetros (mm)</option>
+                <option value="cm">Centímetros (cm)</option>
+                <option value="in">Polegadas (in)</option>
+                <option value="em">EM (em)</option>
+                <option value="rem">REM (rem)</option>
+                <option value="vw">Viewport Width (vw)</option>
+                <option value="vh">Viewport Height (vh)</option>
+                <option value="percentage">Porcentagem (%)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="outputResult"
+                  readonly
+                />
+                <div class="input-group-append">
+                  <button
+                    class="copy-button btn"
+                    onclick="copyValue()"
+                    title="Copiar"
+                  >
+                    <i class="far fa-copy"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-		<div class="footer">
-			<small>
-				*Este projeto foi desenvolvido com a ajuda do ChatGPT 3.5, com orientação de William Alves.
-			</small>
-		</div>
+        <div class="col-12 col-lg-6 d-flex justify-content-center">
+          <div class="calculator-container">
+            <!-- <h4 class="text-center mb-2">Calculadora</h4> -->
+            <input
+              type="text"
+              id="calculator-input"
+              class="calculator-input"
+              readonly
+            />
+            <div class="calculator-buttons">
+              <button onclick="clearInput()">C</button>
+              <button onclick="calculate('/')">/</button>
+              <button onclick="calculate('*')">*</button>
+              <button onclick="calculate('-')">-</button>
+              <button onclick="addToInput('7')">7</button>
+              <button onclick="addToInput('8')">8</button>
+              <button onclick="addToInput('9')">9</button>
+              <button onclick="calculate('+')">+</button>
+              <button onclick="addToInput('4')">4</button>
+              <button onclick="addToInput('5')">5</button>
+              <button onclick="addToInput('6')">6</button>
+              <button onclick="addToInput('.')">.</button>
+              <button onclick="addToInput('1')">1</button>
+              <button onclick="addToInput('2')">2</button>
+              <button onclick="addToInput('3')">3</button>
+              <button class="equal-button" onclick="calculate('=')">=</button>
+              <button class="zero-button" onclick="addToInput('0')">0</button>
+              <button onclick="addToInput('.')">,</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-		<script>
-			function convertMeasurement() {
-				var pixelValue = parseFloat(
-					document.getElementById("pixelInput").value
-				);
-				if (isNaN(pixelValue)) {
-					document.getElementById("outputResult").value = "";
-					return;
-				}
-				var conversionSystem =
-					document.getElementById("conversionSystem").value;
-				var outputResult = document.getElementById("outputResult");
-				var conversionSystemLabel = document.getElementById(
-					"conversionSystemLabel"
-				);
-
-				var convertedValue;
-				var conversionSystemName;
-				var conversionSystemUnit;
-
-				switch (conversionSystem) {
-					case "mm":
-						// Pixels para Milímetros (1px = 0.2645833mm)
-						convertedValue = pixelValue * 0.2645833;
-						conversionSystemName = "Milímetros (mm)";
-						conversionSystemUnit = "mm";
-						break;
-					case "cm":
-						// Pixels para Centímetros (1px = 0.0264583cm)
-						convertedValue = pixelValue * 0.0264583;
-						conversionSystemName = "Centímetros (cm)";
-						conversionSystemUnit = "cm";
-						break;
-					case "in":
-						// Pixels para Polegadas (1px = 0.0104167in)
-						convertedValue = pixelValue * 0.0104167;
-						conversionSystemName = "Polegadas (in)";
-						conversionSystemUnit = "in";
-						break;
-					case "pt":
-						// Pixels para Pontos (1px = 0.75pt)
-						convertedValue = pixelValue * 0.75;
-						conversionSystemName = "Pontos (pt)";
-						conversionSystemUnit = "pt";
-						break;
-					case "em":
-						// Pixels para EM (1px = 0.0625em)
-						convertedValue = pixelValue * 0.0625;
-						conversionSystemName = "EM (em)";
-						conversionSystemUnit = "em";
-						break;
-					case "rem":
-						// Pixels para REM (1px = 0.0625rem)
-						convertedValue = pixelValue * 0.0625;
-						conversionSystemName = "REM (rem)";
-						conversionSystemUnit = "rem";
-						break;
-					case "vw":
-						// Pixels para Viewport Width (1px = 0.01vw)
-						convertedValue = pixelValue * 0.01;
-						conversionSystemName = "Viewport Width (vw)";
-						conversionSystemUnit = "vw";
-						break;
-					case "vh":
-						// Pixels para Viewport Height (1px = 0.01vh)
-						convertedValue = pixelValue * 0.01;
-						conversionSystemName = "Viewport Height (vh)";
-						conversionSystemUnit = "vh";
-						break;
-					case "percentage":
-						// Pixels para Porcentagem (1px = 0.01%)
-						convertedValue = pixelValue * 0.01;
-						conversionSystemName = "Porcentagem (%)";
-						conversionSystemUnit = "%";
-						break;
-					default:
-						convertedValue = 0;
-						conversionSystemName = "";
-						conversionSystemUnit = "";
-						break;
-				}
-
-				outputResult.value =
-					convertedValue.toFixed(2) + " " + conversionSystemUnit;
-				conversionSystemLabel.textContent = conversionSystemName;
-			}
-
-			function copyValue() {
-				var outputResult = document.getElementById("outputResult");
-				outputResult.select();
-				document.execCommand("copy");
-			}
-		</script>
-	</body>
+    <div class="footer">
+      <small>
+        *Este projeto foi desenvolvido com a ajuda do ChatGPT 3.5 e GPT-4o, com
+        orientação de William Alves.
+      </small>
+    </div>
+  </body>
 </html>
